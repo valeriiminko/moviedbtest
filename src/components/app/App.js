@@ -22,6 +22,7 @@ function App() {
 
 const GenreIdList= currentGengre.map(item => item.id).join(',');
 const url_genre = GenreIdList ? `&with_genres=${ GenreIdList }` : '';
+
 console.log(url_genre)
   useEffect(() => {
 
@@ -33,7 +34,9 @@ console.log(url_genre)
        .then(data => data.json())
        .then(res => {
            const newLNlist = res;
-            return setlanguageList(newLNlist);
+            return setlanguageList(() => {
+                return res;
+            });
        })
 
        fetch(`${API_URL}/genre/movie/list?api_key=${API_KeyV3}&language=${currentLanguage}`)
@@ -43,6 +46,8 @@ console.log(url_genre)
           setgenreList(newGenreList);
        })
   },[ sortBy, page, currentLanguage, currentGengre])
+
+  
 
   const onChangeFilters = (e) => {
     let value = e.target.value;
@@ -70,14 +75,19 @@ console.log(url_genre)
   }
 
   const onSelectGenre = (value) => {
-    const newArr = [...currentGengre, value];
-    console.log(newArr)
-    setcurrentGenre(newArr)
-    //   if(value !== currentGengre){
-    //     console.log(value)
-    //     setcurrentGenre(newArr)
-    //     setPage(1);
-    // }
+    const {id} = value;
+   
+    if(currentGengre.some(item => item.id === value.id)){
+      setcurrentGenre((prev)=>{
+        console.log(value)
+          return prev.filter(item => item.id !== id)
+      })
+    }else{
+      setcurrentGenre((prev) => {
+        return [...prev, value];
+      })
+    }
+
   }
 
   return (
