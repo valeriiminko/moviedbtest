@@ -1,6 +1,6 @@
 import React,{useState, useEffect} from 'react';
 import MovieItem from './MovieItem';
-import {API_KeyV3, API_URL} from '../../tools/API';
+import {API_KeyV3, API_URL} from '../../utils/API';
 
 export default function MovieList({moviesData, sortBy, page, currentLanguage, languageList, setlanguageList}) {
 

@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-export default function FiltersGenres({genreList, onSelectGenre, currentGengre}) {
+export default function FiltersGenres({genreList, onSelectGenre, currentGengre, setcurrentGenre}) {
     const GenresID = currentGengre.map(item => item.id);
     // console.log(GenresID)
 const newGenres = genreList.map(genre => {
@@ -12,7 +12,7 @@ const newGenres = genreList.map(genre => {
     return (
     <button  type="button" className={isActive ? 'btn btn-secondary active' : 'btn' } id="custom-button" key={genre.id} onClick={(e) => {
         e.preventDefault();
-        return onSelectGenre(genre)
+        return onSelectGenre(genre, currentGengre, setcurrentGenre)
     }}
     
     aria-pressed="true" >

@@ -5,18 +5,18 @@ import FiltersLanguages from './FiltersLanguages';
 import FiltersGenres from './FiltersGenres';
 import './Filters.scss';
 
-export default function Filters({sortBy, page, onChangeFilters, onSwitchPage, languageList, currentLanguage, onChangeLanguage, genreList, onSelectGenre, currentGengre}) {
+export default function Filters({sortBy, page, onChangeFilters, onChangePage, languageList, currentLanguage, onChangeLanguage, genreList, onSelectGenre, currentGengre, setPage, setcurrentGenre}) {
     // const {sortBy :{sort_by}, onChangeFilters, onSwitchPage} = sortBy;
     
     console.log(page);
     return (
         <form>
             <FiltersSortBy  sortBy={sortBy} onChangeFilters={onChangeFilters} />
-            <PageSwitcher   page={page} onSwitchPage={onSwitchPage}/>
+            <PageSwitcher   page={page} onChangePage={onChangePage} setPage={setPage}/>
             <FiltersLanguages languageList={languageList} currentLanguage={currentLanguage}
             onChangeLanguage={onChangeLanguage}
             />
-            <FiltersGenres genreList={genreList} onSelectGenre={onSelectGenre} currentGengre={currentGengre}/>
+            <FiltersGenres genreList={genreList} onSelectGenre={onSelectGenre} currentGengre={currentGengre} setcurrentGenre={setcurrentGenre}/>
             {/* <div className="form-group">
                 <label htmlFor="sort_by">Sort by:</label>
                 <select  className="form-control" id="sort_by" value={sortBy} name="sort_by" onChange={onChangeFilters}>
